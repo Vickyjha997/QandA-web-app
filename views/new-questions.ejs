@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Questions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fff;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #ff6600;
+            text-align: center;
+        }
+        .question-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .question-item {
+            background-color: #ff6600;
+            color: #fff;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 5px;
+            position: relative;
+        }
+        .question-item h2 {
+            margin: 0 0 10px 0;
+        }
+        .question-item p {
+            margin: 5px 0;
+        }
+        .question-item img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+        .question-link {
+            color: inherit;
+            text-decoration: none;
+        }
+        .buttons {
+            margin-top: 10px;
+        }
+        .buttons button,
+        .buttons a {
+            margin-right: 10px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .skip-button {
+            background-color: #000;
+            color: #fff;
+        }
+        .answer-button {
+            background-color: #28a745;
+            color: #fff;
+        }
+    </style>
+    <script>
+        function skipQuestion(element) {
+            element.closest('.question-item').style.display = 'none';
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>New Questions</h1>
+        <ul class="question-list">
+            <% questions.forEach(function(question) { %>
+                <li class="question-item">
+                    <h2><%= question.subject %></h2>
+                    <p><%= question.questionText %></p>
+                    <% if (question.questionImage) { %>
+                        <img src="/uploads/<%= question.questionImage %>" alt="Question Image">
+                    <% } %>
+                    <div class="buttons">
+                        <button class="skip-button" onclick="skipQuestion(this)">Skip</button>
+                        <a href="<%= question.id %>/answer" class="answer-button">Answer</a>
+                    </div>
+                </li>
+            <% }); %>
+        </ul>
+    </div>
+</body>
+</html>

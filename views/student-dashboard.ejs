@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #fff5e6;
+        }
+        .card-header, .btn-primary {
+            background-color: #ff6600;
+            color: white;
+        }
+        .btn-primary {
+            border-color: #ff6600;
+        }
+        .alert-secondary {
+            background-color: #ffcc99;
+            color: black;
+        }
+        .dashboard-section {
+            margin-top: 20px;
+        }
+        .dashboard-box {
+            background-color: #ff6600;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+            cursor: pointer;
+            height: 200px; /* Set a fixed height */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .dashboard-box:hover {
+            background-color: #e65c00;
+        }
+    </style>
+</head>
+<body>
+    <b><p>@<%= student.username %></p></b>
+    <div class="container mt-5">
+        <h1 class="text-center">Student Dashboard</h1>
+        <div class="row dashboard-section">
+            <!-- History Section -->
+            <div class="col-md-6 mb-4">
+                <div class="dashboard-box" onclick="window.location.href='<%=student._id %>/history'">
+                    <h3>History</h3>
+                    <p>View your previous questions and answers</p>
+                </div>
+            </div>
+            <!-- Raise a New Question Section -->
+            <div class="col-md-6 mb-4">
+                <div class="dashboard-box" onclick="window.location.href='<%=student._id %>/raisequestion'">
+                    <h3>Raise a New Question</h3>
+                    <p>Ask a new question with text or photo</p>
+                </div>
+            </div>
+            <!-- Arrange a Video Call or Chat Section -->
+            <div class="col-md-6 mb-4">
+                <div class="dashboard-box" onclick="window.location.href='/video-chat'">
+                    <h3>Video Call/Chat</h3>
+                    <p>Arrange a video call or chat with a tutor</p>
+                </div>
+            </div>
+            <!-- Instant Answer from Gemini API Section -->
+            <div class="col-md-6 mb-4">
+                <div class="dashboard-box" onclick="window.location.href='<%=student._id %>/instant-answer'">
+                    <h3>Instant Answer</h3>
+                    <p>Get an instant answer from Gemini API</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

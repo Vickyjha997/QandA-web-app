@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ask a Question</title>
+    <style>
+        body {
+            background-color: white;
+            color: orange;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 2px solid orange;
+            border-radius: 10px;
+            background-color: white;
+        }
+        h1 {
+            text-align: center;
+            color: orange;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            color: orange;
+        }
+        select, input[type="file"], textarea, button {
+            width: 90%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid orange;
+            border-radius: 5px;
+        }
+        button {
+            background-color: orange;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: darkorange;
+        }
+        #imagePreview {
+            margin-top: 10px;
+            max-width: 100%;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Ask a Question</h1>
+        <form action="submit-question" method="post" enctype="multipart/form-data">
+            <label for="subject">Subject</label>
+            <select id="subject" name="subject" required>
+                <option value="DSA">DSA</option>
+                <option value="MERN">MERN</option>
+                <option value="Spring Boot">Spring Boot</option>
+                <option value="Development">Development</option>
+                <option value="Maths">Maths</option>
+                <option value="C++">C++</option>
+                <option value="JavaScript">JavaScript</option>
+            </select>
+            
+            <label for="questionImage">Question Image (optional)</label>
+            <input type="file" id="questionImage" name="questionImage" accept="image/*">
+            <img id="imagePreview" alt="Image Preview">
+            
+            <label for="questionText">Question Text</label>
+            <textarea id="questionText" name="questionText" rows="5" required></textarea>
+            
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <script>
+        document.getElementById('questionImage').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const imagePreview = document.getElementById('imagePreview');
+                    imagePreview.src = e.target.result;
+                    imagePreview.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: white;
+            color: orange;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        .response-container {
+            border: 2px solid orange;
+            padding: 20px;
+            border-radius: 10px;
+            display: inline-block;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 20px auto;
+        }
+        h3 {
+            color: orange;
+        }
+        .response-text {
+            color: black;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h3>Your Response!!!</h3>
+    <div class="response-container">
+        <div class="response-text"><b><%= response %></b></div>
+    </div>
+</body>
+</html>

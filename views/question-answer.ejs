@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Answer Question</title>
+    <style>
+        body {
+            background-color: #f9f9f9;
+            color: #ff6600;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        h1, h2 {
+            color: #ff6600;
+        }
+        label {
+            color: #ff6600;
+        }
+        input, textarea {
+            border: 2px solid #ff6600;
+            border-radius: 5px;
+            padding: 10px;
+            width: 100%;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+        }
+        button {
+            background-color: #ff6600;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #e65c00;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 600px;
+        }
+        .image-preview {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .image-preview img {
+            max-width: 100px;
+            max-height: 100px;
+            border: 2px solid #ff6600;
+            border-radius: 5px;
+        }
+        .question-image {
+            max-width: 100%;
+            max-height: 300px;
+            margin-top: 10px;
+            border: 2px solid #ff6600;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Answer the Question</h1>
+        <div>
+            <h2>Question Details</h2>
+            <p><strong>Question ID:</strong> <%= question._id %></p>
+            <p><strong>Question:</strong> <%= question.questionText %></p>
+            <% if (question.questionImage) { %>
+                <img src="/uploads/<%= question.questionImage %>" alt="Question Image" class="question-image">
+            <% } %>
+        </div>
+        <form action="submit-answer" method="POST" enctype="multipart/form-data">
+            <div>
+                <label for="answerIntro">Answer Introduction:</label>
+                <textarea id="answerIntro" name="answerIntro" required></textarea>
+            </div>
+            <div>
+                <label for="answerImages">Answer Images:</label>
+                <input type="file" id="answerImages" name="answerImages" multiple required>
+                <div class="image-preview" id="imagePreview"></div>
+            </div>
+            <div>
+                <label for="answerConclusion">Answer Conclusion:</label>
+                <textarea id="answerConclusion" name="answerConclusion" required></textarea>
+            </div>
+            <button type="submit">Submit Answer</button>
+        </form>
+    </div>
+    <script>
+        document.getElementById('answerImages').addEventListener('change', function(event) {
+            const imagePreview = document.getElementById('imagePreview');
+            imagePreview.innerHTML = '';
+            const files = event.target.files;
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    imagePreview.appendChild(img);
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+</body>
+</html>

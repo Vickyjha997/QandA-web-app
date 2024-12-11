@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #ff6600;
+            color: white;
+            padding: 1rem; /* Increased padding to increase height */
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2rem; /* Increased font size */
+        }
+        .container {
+            display: flex;
+            justify-content: space-between;
+            padding: 2rem;
+        }
+        .sections {
+            display: flex;
+            flex-direction: column;
+            width: 45%;
+        }
+        section {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #ff6600;
+        }
+        .button {
+            display: inline-block;
+            background-color: #ff6600;
+            color: white;
+            padding: 0.5rem 1rem;
+            margin: 0.5rem 0;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #e65c00;
+        }
+        .image-container {
+            width: 45%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .image-container img {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to QandA</h1>
+    </header>
+    <main>
+        <div class="container">
+            <div class="image-container">
+                <img src="https://thumbs.dreamstime.com/b/questions-answers-symbol-white-paper-words-q-miniature-bicycle-beautiful-orange-backgroun-background-business-concept-copy-207357924.jpg" alt="My QandA image">
+            </div>
+            <div class="sections">
+                <section class="student">
+                    <h2>Student</h2>
+                    <a href="/student/login" class="button">Login as Student</a>
+                    <a href="/student/register" class="button">Register as Student</a>
+                </section>
+                <section class="tutor">
+                    <h2>Tutor</h2>
+                    <a href="/tutor/login" class="button">Login as Tutor</a>
+                    <a href="/tutor/register" class="button">Register as Tutor</a>
+                </section>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

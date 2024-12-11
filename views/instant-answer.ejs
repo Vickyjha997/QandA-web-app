@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Upload and Preview</title>
+    <style>
+        body {
+            background-color: white;
+            color: orange;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 2px solid orange;
+            border-radius: 10px;
+        }
+        .preview {
+            margin-top: 20px;
+        }
+        .preview img {
+            max-width: 100%;
+            border: 2px solid orange;
+            border-radius: 10px;
+        }
+        input[type="text"] {
+            width: 80%;
+            height: 100px;
+            border: 2px solid orange;
+            border-radius: 10px;
+            padding: 10px;
+        }
+        input[type="submit"] {
+            background-color: orange;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h3>Get your answer here</h3>
+        <form id="uploadForm" action="response" 
+        method="POST"
+        enctype="multipart/form-data">
+            <input name="promptImage" type="file" id="imageUpload" accept="image/*"><br><br>
+            <input name="promptText" type="text" placeholder="Give your Prompt..." required></input><br><br>
+            <input type="submit" value="Get Answer">
+        </form>
+        <div class="preview" id="imagePreview">
+            <p>No image uploaded yet.</p>
+        </div>
+    </div>
+    <script>
+        document.getElementById('imageUpload').addEventListener('change', function(event) {
+            const preview = document.getElementById('imagePreview');
+            preview.innerHTML = '';
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    preview.appendChild(img);
+                }
+                reader.readAsDataURL(file);
+            } else {
+                preview.innerHTML = '<p>No image uploaded yet.</p>';
+            }
+        });
+    </script>
+</body>
+</html>
